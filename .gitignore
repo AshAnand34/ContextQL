@@ -1,0 +1,15 @@
+# Visual Studio / .NET
+bin/
+obj/
+**/bin/
+**/obj/
+.vs/
+.vscode/
+.idea/
+
+# User secrets
+secrets.json
+
+# Docker
+**/docker-compose.override.yml
+.env

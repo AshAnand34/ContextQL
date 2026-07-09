@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: contextql
+      POSTGRES_USER: contextql
+      POSTGRES_PASSWORD: Gr4phQL!*
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: .
+      dockerfile: ./src/ContextQL.Api/Dockerfile
+    depends_on:
+      - db
+    environment:
+      ConnectionStrings__Default: "Host=db;Database=contextql;Username=contextql;Password=Gr4phQL!*"
+    ports:
+      - "5000:80"
+
+volumes:
+  pgdata:
